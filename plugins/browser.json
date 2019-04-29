@@ -9,6 +9,9 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "br.com.casafreitas.consultapreco"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "br.com.casafreitas.consultapreco"
     }
   },
   "dependent_plugins": {}

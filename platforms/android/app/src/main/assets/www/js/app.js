@@ -22,7 +22,7 @@
                 function consultaProduto(ean){
                         console.log("Consultando produto " +ean);
                         $.ajax({
-                        url: "http://192.168.0.125/projetos/SrvBuscaPreco/index.php?ean=" + ean,
+                        url: "http://192.168.0.200/SrvBuscaPreco/index.php?ean=" + ean,
                         type: "get",
                         //data: "ean="+ean.value,
                         dataType: "json"
@@ -31,7 +31,7 @@
                             if(resposta.EAN){
                                 console.log("Retornou:"  + resposta.EAN + "||" + resposta.DESCRICAO);
                                 //$('#ean').html(resposta.DESCRICAO);
-                                $('#imgProduto').attr('src','http://192.168.0.125/projetos/SrvBuscaPreco/imagens/'+ resposta.CODIGO +'.jpg');
+                                $('#imgProduto').attr('src','http://192.168.0.200/SrvBuscaPreco/imagens/'+ resposta.CODIGO +'.jpg');
                                 $('#ean').html(resposta.EAN);
                                 $('#codigo').html(resposta.CODIGO);
                                 $('#descricao').html(resposta.DESCRICAO);
