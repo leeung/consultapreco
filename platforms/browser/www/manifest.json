@@ -1,0 +1,11 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Consulta de preço, Casa Freitas",
+  "short_name": "Consulta de preço, Casa Freitas",
+  "version": "br.com.casafreitas.consultapreco",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "author": "Apache Cordova Team",
+  "icons": [],
+  "start_url": "index.html"
+}

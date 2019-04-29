@@ -1,0 +1,24 @@
+ @font-face{
+            font-family: fonteCf;
+            src: url(../../font/NadiaSofia.ttf)
+        }
+        body{
+            --background-image: url(banner/fundo.png);
+            --background-color: #283593;
+            background-image: radial-gradient(#283593);
+            
+        }
+        h1{
+            color: #2e3192;
+            font-family: fonteCf;
+            text-shadow: 5px 5px 25px #5c5fc3;
+        }
+        #ean{
+            --font-size: 40px;
+            color: #ed1c24;
+            background-color: #fff;
+        }
+        .modal{
+          z-index: 1000;
+          width: 90%;
+        }
