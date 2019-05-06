@@ -27,7 +27,7 @@
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
-    <preference name="android-minSdkVersion" value="23" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="orientation" value="landscape" />
     <preference name="permissions" value="none" />
     <preference name="fullscreen" value="true" />
