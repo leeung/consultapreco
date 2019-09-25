@@ -20,34 +20,52 @@
 
         return quantidade;
     }
+
+    function zeraRegistros(){
+        $('#imgProduto').attr('src','');
+        $('#barra').html('');
+        $('#codigo').html('');
+        $('#descricao').html('');
+        $('#varejo').html('');
+        $('#atacado').html('');
+        $('#quantidade').html('');
+    }
                 function consultaProduto(codBar){
                         console.log("Consultando produto " + codBar);
                         $.ajax({
                         url: "http://192.168.0.200/SrvBuscaPreco/index.php",
+                        //url: "http://192.168.0.125/projetos/casafreitas/srvbuscapreco/index.php",
                         type: "get",
                         data: {ean: codBar},
                         dataType: "json"
 
                         }).done(function(resposta) {
-                            if(resposta.EAN){
-                                console.log("Retornou:"  + resposta.EAN + "||" + resposta.DESCRICAO);
-                                //$('#ean').html(resposta.DESCRICAO);
+                            
+                            //console.log(resposta);
+                            //var obj = JSON.parse(resposta);
+                            console.log(JSON.stringify(resposta));
+                            
+                            zeraRegistros();
+                            console.log('Error: '+resposta.error);
+                            console.log('Message: '+resposta.message);
+                            if(resposta.error == false){
+                                console.log(resposta.id_result[0].EAN);
                                 $('#imgProduto').attr('src','http://192.168.0.200/SrvBuscaPreco/imagens/'+ resposta.CODIGO +'.jpg');
-                                $('#barra').html(resposta.EAN);
-                                $('#codigo').html(resposta.CODIGO);
-                                $('#descricao').html(resposta.DESCRICAO);
-                                $('#varejo').html(resposta.VAREJO);
-                                $('#atacado').html(resposta.ATACADO);
-                                $('#quantidade').html(getQuantidade(resposta.VAREJO));
+                                $('#barra').html(resposta.id_result[0].EAN);
+                                $('#codigo').html(resposta.id_result[0].CODIGO);
+                                $('#descricao').html(resposta.id_result[0].DESCRICAO);
+                                $('#varejo').html(resposta.id_result[0].VAREJO);
+
+                                if(resposta.id_result[0].ATACADO != ''){
+                                    $('#atacado').html(resposta.id_result[0].ATACADO);
+                                    $('#quantidade').html('Atacarejo partir de '+getQuantidade(resposta.id_result[0].ATACADO)+' unidades' );
+                                }
                                 $('.modal').modal('open');
-                                
-                            }else{
-                                console.log("Retornou Erro");
+                            }else if(resposta.error == true){
                                 codBar = "";
-                                $('#ean').val("PRODUTO NÃO CADASTRADO");
+                                $('#ean').val(resposta.message);
                             }
                             
-
                         }).fail(function(jqXHR, textStatus ) {
                             console.log("Falhou na requisição: " + textStatus);
                             $('#ean').val("ERRO DE CONEXAO");
