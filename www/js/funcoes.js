@@ -1,9 +1,8 @@
- 
- //coleta o ip do cliente;
+ //funções especificas 
  var getip = function() {
 
  	var ip = '';
-    $.getJSON("http://192.168.0.125/projetos/api/getip.php",
+    $.getJSON("http://192.168.0.200/api/getip.php",
       function(json) {
       	ip = json.ip;
         setInfoIp(ip);
