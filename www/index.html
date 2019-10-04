@@ -13,6 +13,8 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  
+  
     
     <style type="text/css">
         @font-face{
@@ -38,6 +40,19 @@
         .modal{
           z-index: 1000;
           width: 90%;
+        }
+
+        .page-footer{
+          padding: 0;
+          position: absolute;
+          top: 0px;
+          width: 100%;
+        }
+        .footer-copyright{
+          font-size: 10px;
+          line-height: 5px;
+          min-height: auto !important;
+          height: auto;
         }
 
         
@@ -114,11 +129,20 @@
         </li>
       </ul>
     </div>
-  </div
+  </div>
+  <footer class="page-footer indigo darken-1">
+    <div class="footer-copyright">
+      <div class="container">
+        <span class="right">&nbspV.20191003&nbsp</span>
+        <span class="right" id='ip'></span>
+      </div>
+    </div>
+  </footer>
    
 
     <!--  Scripts--> 
     <script type="text/javascript" src="js/telaConsulta.js"></script>
+    <script src="js/funcoes.js"></script>
     <script type="text/javascript">
         var uf = '';
         var ean = "";
@@ -142,6 +166,7 @@
    
   
         $(document).ready(function(){
+            getip();
             $('.slider').slider({
                                   indicators: false,
                                   height: 400

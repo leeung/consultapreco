@@ -40,7 +40,7 @@
                         dataType: "json"
 
                         }).done(function(resposta) {
-                            
+                            getip();
                             //console.log(resposta);
                             //var obj = JSON.parse(resposta);
                             console.log(JSON.stringify(resposta));
@@ -72,6 +72,7 @@
 
                         }).always(function() {
                             console.log("Concluido");
+                            
                         });
 
                         codBar = "";
