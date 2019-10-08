@@ -2,7 +2,7 @@
  var getip = function() {
 
  	var ip = '';
-    $.getJSON("http://192.168.0.200/api/getip.php",
+    $.getJSON("http://192.168.0.125/projetos/casafreitas/buscapreco2/index.php/Consulta/getipCliente",
       function(json) {
       	ip = json.ip;
         setInfoIp(ip);

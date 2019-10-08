@@ -1,25 +1,4 @@
-
-    function getQuantidade(preco){
-        quantidade = 12;
-        preco  = preco.replace(',','.');
-        var nPreco = parseFloat(preco.substr(2,5));
-        console.log('Preco convertido: '+ nPreco);
-
-        if(nPreco > 5 &&  nPreco <= 9.99){
-            quantidade = 8;
-        }  else if(nPreco > 10 &&  nPreco <= 19.99){
-            quantidade = 6
-        }else if(nPreco > 20 &&  nPreco <= 79.99){
-            quantidade = 4
-        }else if(nPreco > 80 &&  nPreco <= 99.99){
-            quantidade = 3
-        }else if(nPreco > 100){
-            quantidade = 2
-        }
-        
-
-        return quantidade;
-    }
+    const versao = '20191008';
 
     function zeraRegistros(){
         $('#imgProduto').attr('src','');
@@ -33,10 +12,10 @@
                 function consultaProduto(codBar){
                         console.log("Consultando produto " + codBar);
                         $.ajax({
-                        url: "http://192.168.0.200/SrvBuscaPreco/index.php",
-                        //url: "http://192.168.0.125/projetos/casafreitas/srvbuscapreco/index.php",
+                        url: "http://192.168.0.200/buscapreco2/index.php/Consulta/consultaproduto/"+codBar+"/null/"+versao,
+                        //url: "http://192.168.0.125/projetos/casaFreitas/buscapreco2/index.php/Consulta/consultaproduto/"+codBar,
                         type: "get",
-                        data: {ean: codBar},
+                        //data: {ean: codBar},
                         dataType: "json"
 
                         }).done(function(resposta) {
@@ -49,18 +28,20 @@
                             console.log('Error: '+resposta.error);
                             console.log('Message: '+resposta.message);
                             if(resposta.error == false){
-                                console.log(resposta.id_result[0].EAN);
-                                $('#imgProduto').attr('src','http://192.168.0.200/SrvBuscaPreco/imagens/'+ resposta.CODIGO +'.jpg');
-                                $('#barra').html(resposta.id_result[0].EAN);
-                                $('#codigo').html(resposta.id_result[0].CODIGO);
-                                $('#descricao').html(resposta.id_result[0].DESCRICAO);
-                                $('#varejo').html(resposta.id_result[0].VAREJO);
+                                console.log(resposta.result.EAN);
+                                
+                                $('#imgProduto').attr('src','http://192.168.0.200/buscapreco2/assets/imagens_produtos/'+ resposta.result.CODIGO +'.jpg');
+                                $('#barra').html(resposta.result.EAN);
+                                $('#codigo').html(resposta.result.CODIGO);
+                                $('#descricao').html(resposta.result.DESCRICAO);
+                                $('#varejo').html(resposta.result.VAREJO);
 
-                                if(resposta.id_result[0].ATACADO != ''){
-                                    $('#atacado').html(resposta.id_result[0].ATACADO);
-                                    $('#quantidade').html('Atacarejo partir de '+getQuantidade(resposta.id_result[0].ATACADO)+' unidades' );
+                                if(resposta.result.LOTE != ''){
+                                    $('#atacado').html(resposta.result.ATACADO);
+                                    $('#quantidade').html('Atacarejo partir de '+ Math.round(resposta.result.LOTE) +' unidades' );
                                 }
                                 $('.modal').modal('open');
+                                
                             }else if(resposta.error == true){
                                 codBar = "";
                                 $('#ean').val(resposta.message);

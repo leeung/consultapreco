@@ -111,7 +111,7 @@
   <div class="container">    
     <div class="row">
       <h1 class="col s12 center">CONSULTA DE PRODUTOS</h1>
-      <input class="col s12 center" id="ean" type="text" placeholder="Código do produto" disabled="true">
+      <input class="col s12 center" id="ean" type="text" placeholder="Código do produto" disabled="false">
     </div>
   </div>
     
@@ -179,8 +179,8 @@
             
             $('select').formSelect();
             $('.tooltipped').tooltip();
-            $('.modal').modal({ inDuration: 500, 
-                                outDuration: 500,
+            $('.modal').modal({ inDuration: 30, 
+                                outDuration: 30,
                                 startingTop: '30%',
                                 onOpenEnd: function(){
                                   fecharModal();
