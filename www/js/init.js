@@ -1,6 +1,6 @@
 console.log('-----Declarando constantes----');
 
-const versao 			= '20191009';
+const versao 			= '20191009_2';
 const servidor 			= 'http://192.168.0.200/buscapreco2/';
 
 const getConsulta 		= servidor + "index.php/consulta/consultaproduto/";
