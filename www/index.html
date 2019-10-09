@@ -3,14 +3,14 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>BuscaPreco-CF</title>
 
   <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/googlefontsapi.css" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/jquery.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
   
@@ -119,13 +119,13 @@
     <div class="slider z-depth-1">
       <ul class="slides">
         <li>
-          <img src="http://192.168.0.200/srvbuscapreco/banner/001.jpg"> <!-- random image -->
+          <img src="http://192.168.0.200/buscapreco2/assets/imagens_banner/001.jpg"> <!-- random image -->
         </li>
         <li>
-          <img src="http://192.168.0.200/srvbuscapreco/banner/002.jpg"> <!-- random image -->
+          <img src="http://192.168.0.200/buscapreco2/assets/imagens_banner/002.jpg"> <!-- random image -->
         </li>
         <li>
-          <img src="http://192.168.0.200/srvbuscapreco/banner/003.jpg"> <!-- random image -->
+          <img src="http://192.168.0.200/buscapreco2/assets/imagens_banner/003.jpg"> <!-- random image -->
         </li>
       </ul>
     </div>
@@ -133,7 +133,7 @@
   <footer class="page-footer indigo darken-1">
     <div class="footer-copyright">
       <div class="container">
-        <span class="right">&nbspV.20191003&nbsp</span>
+        <span id="versao" class="right"></span>
         <span class="right" id='ip'></span>
       </div>
     </div>
@@ -141,8 +141,8 @@
    
 
     <!--  Scripts--> 
+    <script type="text/javascript" src="js/funcoes.js"></script>
     <script type="text/javascript" src="js/telaConsulta.js"></script>
-    <script src="js/funcoes.js"></script>
     <script type="text/javascript">
         var uf = '';
         var ean = "";
@@ -166,7 +166,7 @@
    
   
         $(document).ready(function(){
-            getip();
+            //getip();
             $('.slider').slider({
                                   indicators: false,
                                   height: 400
