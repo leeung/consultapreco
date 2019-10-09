@@ -28,7 +28,7 @@
                             if(resposta.error == false){
                                 console.log(resposta.result.EAN);
                                 
-                                $('#imgProduto').attr('src',urlFoto+resposta.result.CODIGO +'.jpg');
+                                $('#imgProduto').attr('src',urlFoto+resposta.result.IMG);
                                 $('#barra').html(resposta.result.EAN);
                                 $('#codigo').html(resposta.result.CODIGO);
                                 $('#descricao').html(resposta.result.DESCRICAO);
