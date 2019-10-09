@@ -1,4 +1,4 @@
-    
+    const versao = '20191008';
 
     function zeraRegistros(){
         $('#imgProduto').attr('src','');
@@ -12,12 +12,14 @@
                 function consultaProduto(codBar){
                         console.log("Consultando produto " + codBar);
                         $.ajax({
-                        url: getConsulta+codBar+"/null/"+versao,
+                        url: "http://192.168.0.200/buscapreco2/index.php/Consulta/consultaproduto/"+codBar+"/null/"+versao,
+                        //url: "http://192.168.0.125/projetos/casaFreitas/buscapreco2/index.php/Consulta/consultaproduto/"+codBar,
                         type: "get",
                         //data: {ean: codBar},
                         dataType: "json"
 
                         }).done(function(resposta) {
+                            getip();
                             //console.log(resposta);
                             //var obj = JSON.parse(resposta);
                             console.log(JSON.stringify(resposta));
@@ -28,7 +30,7 @@
                             if(resposta.error == false){
                                 console.log(resposta.result.EAN);
                                 
-                                $('#imgProduto').attr('src',urlFoto+resposta.result.CODIGO +'.jpg');
+                                $('#imgProduto').attr('src','http://192.168.0.200/buscapreco2/assets/imagens_produtos/'+ resposta.result.CODIGO +'.jpg');
                                 $('#barra').html(resposta.result.EAN);
                                 $('#codigo').html(resposta.result.CODIGO);
                                 $('#descricao').html(resposta.result.DESCRICAO);
