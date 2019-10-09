@@ -1,8 +1,11 @@
  //funções especificas 
- var getip = function() {
+//var endSrvIp = 'http://192.168.0.200/buscapreco2/index.php/Consulta/getipCliente';
+//var endSrvIp = 'http://192.168.0.125/projetos/casafreitas/buscapreco2/index.php/Consulta/getipCliente';
+
+ var getIp = function() {
 
  	var ip = '';
-    $.getJSON("http://192.168.0.125/projetos/casafreitas/buscapreco2/index.php/Consulta/getipCliente",
+    $.getJSON(getIpCliente,
       function(json) {
       	ip = json.ip;
         setInfoIp(ip);
