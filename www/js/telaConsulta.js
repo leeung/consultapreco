@@ -36,7 +36,8 @@
 
                                 if(resposta.result.LOTE != ''){
                                     $('#atacado').html(resposta.result.ATACADO);
-                                    $('#quantidade').html('Atacarejo partir de '+ Math.round(resposta.result.LOTE) +' unidades' );
+                                    if(Math.round(resposta.result.LOTE) != '999999')
+                                        $('#quantidade').html('Atacarejo partir de '+ Math.round(resposta.result.LOTE) +' unidades' );
                                 }
                                 $('.modal').modal('open');
                                 
