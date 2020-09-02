@@ -1,7 +1,7 @@
 console.log('-----Declarando constantes----');
 
-const versao 			= '20200730_1';
-const servidor 			= 'http://192.168.0.200/buscapreco2/';
+const versao 			= '20200902_1';
+const servidor 			= 'http://192.168.0.200/srvbuscapreco/';
 
 const getConsulta 		= servidor + "index.php/consulta/consultaproduto/";
 const getIpCliente 		= servidor + "index.php/consulta/getIpCliente/";

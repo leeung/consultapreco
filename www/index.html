@@ -203,6 +203,10 @@
                     if (numeros.indexOf(tecla) != -1){
                         ean = ean + String(tecla);
                         $('#ean').val(ean);
+                        if(ean.length >= 13){
+                          consultaProduto(ean);
+                          ean = "";
+                        }
                     }else if(event.keyCode == 13){
                       /*
                       if(!validaUF()){
