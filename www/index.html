@@ -22,7 +22,7 @@
             src: url(font/NadiaSofia.ttf)
         }
         body{
-            background-image: url(http://192.168.0.200/buscapreco2/assets/imagens_fundo/fundo.jpg);
+            background-image: url(http://192.168.0.200/srvbuscapreco/assets/imagens_fundo/fundo.jpg);
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -98,18 +98,10 @@
       <i class="large material-icons">home</i>
     </a>
     <ul>
-      <li><a class="btn-floating red tooltipped" data-position="left" data-tooltip="Fale conosco">
-          <i class="material-icons">chat</i></a>
+      <li><a id="icoDownload" class="btn-floating red tooltipped" data-position="left" data-tooltip="Download">
+          <i class="material-icons">cloud_download</i></a>
       </li>
-      <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-tooltip="Buscar descrição">
-          <i class="material-icons">search</i></a>
-      </li>
-      <li><a class="btn-floating green tooltipped" data-position="left" data-tooltip="Lojas">
-          <i class="material-icons">location_on</i></a>
-      </li>
-      <li><a class="btn-floating blue tooltipped" data-position="left" data-tooltip="Encarte">
-          <i class="material-icons">local_library</i></a>
-      </li>
+	  
     </ul>
   </div>
 <BR/><BR/>
@@ -124,13 +116,13 @@
     <div class="slider z-depth-1">
       <ul class="slides">
         <li>
-          <img src="http://192.168.0.200/buscapreco2/assets/imagens_banner/001.jpg"> <!-- random image -->
+          <img src="http://192.168.0.200/srvbuscapreco/assets/imagens_banner/001.jpg"> <!-- random image -->
         </li>
         <li>
-          <img src="http://192.168.0.200/buscapreco2/assets/imagens_banner/002.jpg"> <!-- random image -->
+          <img src="http://192.168.0.200/srvbuscapreco/assets/imagens_banner/002.jpg"> <!-- random image -->
         </li>
         <li>
-          <img src="http://192.168.0.200/buscapreco2/assets/imagens_banner/003.jpg"> <!-- random image -->
+          <img src="http://192.168.0.200/srvbuscapreco/assets/imagens_banner/003.jpg"> <!-- random image -->
         </li>
       </ul>
     </div>
@@ -204,20 +196,16 @@
                         ean = ean + String(tecla);
                         $('#ean').val(ean);
                         if(ean.length >= 13){
+						  console.log("Executando função de consulta para: " +ean);
                           consultaProduto(ean);
                           ean = "";
                         }
-                    }else if(event.keyCode == 13){
-                      /*
-                      if(!validaUF()){
-                        alert("Selecione a UF");
-                        return false
-                      }
-                      */
+                    }/*else if(event.keyCode == 13){
+
                         console.log("Executando função de consulta para: " +ean);
                         consultaProduto(ean);
                         ean = "";
-                    }
+                    }*/
                     
                 }
 
