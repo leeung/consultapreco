@@ -3,16 +3,18 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Starter Template - Materialize</title>
+  <title>BuscaPreco-CF</title>
 
   <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/googlefontsapi.css" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/jquery.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  
+  
     
     <style type="text/css">
         @font-face{
@@ -20,15 +22,17 @@
             src: url(font/NadiaSofia.ttf)
         }
         body{
-            --background-image: url(banner/fundo.png);
+            background-image: url(http://192.168.0.200/srvbuscapreco/assets/imagens_fundo/fundo.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             --background-color: #283593;
-            background-image: radial-gradient(#283593);
+            --background-image: radial-gradient(#283593);
             
         }
         h1{
-            color: #2e3192;
-            font-family: fonteCf;
-            text-shadow: 5px 5px 25px #5c5fc3;
+            color: #ffffff;
+
         }
         #ean{
             --font-size: 40px;
@@ -38,6 +42,23 @@
         .modal{
           z-index: 1000;
           width: 90%;
+        }
+
+        .page-footer{
+          padding: 0;
+          position: absolute;
+          top: 0px;
+          width: 100%;
+        }
+        .footer-copyright{
+          font-size: 10px;
+          line-height: 5px;
+          min-height: auto !important;
+          height: auto;
+        }
+
+        #imgProduto{
+          max-width: 100%;
         }
 
         
@@ -62,7 +83,7 @@
                   <div class="col s12"><p>Descrição</p><h5 id="descricao"></h5></div>
                   <div class="col s6" ><p>Preço Varejo</p><h4 id="varejo"></h4></div>
                   <div class="col s6"><p>Preço Atacado</p><h4 id="atacado"></h4></div>
-                  <div class="col s12 center"><h5>Atacarejo partir de <span id="quantidade">6</span> unidades</h5></div>
+                  <div class="col s12 center"><p id="quantidade"></p></div>
               </div>
             </div>  
           </div>
@@ -77,26 +98,17 @@
       <i class="large material-icons">home</i>
     </a>
     <ul>
-      <li><a class="btn-floating red tooltipped" data-position="left" data-tooltip="Fale conosco">
-          <i class="material-icons">chat</i></a>
+      <li><a id="icoDownload" class="btn-floating red tooltipped" data-position="left" data-tooltip="Download">
+          <i class="material-icons">cloud_download</i></a>
       </li>
-      <li><a class="btn-floating yellow darken-1 tooltipped" data-position="left" data-tooltip="Buscar descrição">
-          <i class="material-icons">search</i></a>
-      </li>
-      <li><a class="btn-floating green tooltipped" data-position="left" data-tooltip="Lojas">
-          <i class="material-icons">location_on</i></a>
-      </li>
-      <li><a class="btn-floating blue tooltipped" data-position="left" data-tooltip="Encarte">
-          <i class="material-icons">local_library</i></a>
-      </li>
+	  
     </ul>
   </div>
-
+<BR/><BR/>
     
   <div class="container">    
     <div class="row">
-      <h1 class="col s12 center">CONSULTA DE PRODUTOS</h1>
-      <input class="col s12 center" id="ean" type="text" placeholder="Código do produto" disabled="true">
+      <input class="col s12 center" id="ean" type="text" placeholder="Código do produto" disabled="false">
     </div>
   </div>
     
@@ -104,20 +116,29 @@
     <div class="slider z-depth-1">
       <ul class="slides">
         <li>
-          <img src="http://192.168.0.200/srvbuscapreco/banner/001.jpg"> <!-- random image -->
+          <img src="http://192.168.0.200/srvbuscapreco/assets/imagens_banner/001.jpg"> <!-- random image -->
         </li>
         <li>
-          <img src="http://192.168.0.200/srvbuscapreco/banner/002.jpg"> <!-- random image -->
+          <img src="http://192.168.0.200/srvbuscapreco/assets/imagens_banner/002.jpg"> <!-- random image -->
         </li>
         <li>
-          <img src="http://192.168.0.200/srvbuscapreco/banner/003.jpg"> <!-- random image -->
+          <img src="http://192.168.0.200/srvbuscapreco/assets/imagens_banner/003.jpg"> <!-- random image -->
         </li>
       </ul>
     </div>
-  </div
+  </div>
+  <footer class="page-footer indigo darken-1">
+    <div class="footer-copyright">
+      <div class="container">
+        <span id="versao" class="right"></span>
+        <span class="right" id='ip'></span>
+      </div>
+    </div>
+  </footer>
    
 
     <!--  Scripts--> 
+    <script type="text/javascript" src="js/funcoes.js"></script>
     <script type="text/javascript" src="js/telaConsulta.js"></script>
     <script type="text/javascript">
         var uf = '';
@@ -142,6 +163,7 @@
    
   
         $(document).ready(function(){
+            //getip();
             $('.slider').slider({
                                   indicators: false,
                                   height: 400
@@ -154,8 +176,8 @@
             
             $('select').formSelect();
             $('.tooltipped').tooltip();
-            $('.modal').modal({ inDuration: 500, 
-                                outDuration: 500,
+            $('.modal').modal({ inDuration: 30, 
+                                outDuration: 30,
                                 startingTop: '30%',
                                 onOpenEnd: function(){
                                   fecharModal();
@@ -173,17 +195,17 @@
                     if (numeros.indexOf(tecla) != -1){
                         ean = ean + String(tecla);
                         $('#ean').val(ean);
-                    }else if(event.keyCode == 13){
-                      /*
-                      if(!validaUF()){
-                        alert("Selecione a UF");
-                        return false
-                      }
-                      */
+                        if(ean.length >= 13){
+						  console.log("Executando função de consulta para: " +ean);
+                          consultaProduto(ean);
+                          ean = "";
+                        }
+                    }/*else if(event.keyCode == 13){
+
                         console.log("Executando função de consulta para: " +ean);
                         consultaProduto(ean);
                         ean = "";
-                    }
+                    }*/
                     
                 }
 

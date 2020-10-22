@@ -12,3 +12,8 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+#telaLog{
+  height: 0px;
+  overflow-y: scroll;
+  
+}

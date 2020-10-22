@@ -23,10 +23,10 @@
                             console.log(JSON.stringify(resposta));
                             
                             zeraRegistros();
-                            console.log('Error: '+resposta.error);
-                            console.log('Message: '+resposta.message);
+                            log('Error: '+resposta.error);
+                            log('Message: '+resposta.message);
                             if(resposta.error == false){
-                                console.log(resposta.result.EAN);
+                                log(resposta.result.EAN);
                                 
                                 $('#imgProduto').attr('src',urlFoto+resposta.result.IMG);
                                 $('#barra').html(resposta.result.EAN);
@@ -38,6 +38,8 @@
                                     $('#atacado').html(resposta.result.ATACADO);
                                     if(Math.round(resposta.result.LOTE) != '999999')
                                         $('#quantidade').html('Atacarejo partir de '+ Math.round(resposta.result.LOTE) +' unidades' );
+                                }else{
+                                    $('#atacado').html('');
                                 }
                                 $('.modal').modal('open');
                                 
@@ -47,11 +49,11 @@
                             }
                             
                         }).fail(function(jqXHR, textStatus ) {
-                            console.log("Falhou na requisição: " + textStatus);
+                            log("Falhou na requisição: " + textStatus);
                             $('#ean').val("ERRO DE CONEXAO");
 
                         }).always(function() {
-                            console.log("Concluido");
+                            log("Concluido");
                             
                         });
 

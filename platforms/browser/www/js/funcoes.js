@@ -16,11 +16,11 @@
 
   var setInfoIp = function(ip){
 	if(ip == ''){
-    	log("desconectado "+ip);
+    	console.log("desconectado "+ip);
 		$('#ip').text('IP: sem conexao');
 		$('#ip').addClass('red-text text-lighten-3');
     }else{
-    	log("conectado ip "+ip);
+    	console.log("conectado ip "+ip);
     	$('#ip').text('IP:'+ip);
     	$('#ip').removeClass('red-text text-lighten-3');
     }

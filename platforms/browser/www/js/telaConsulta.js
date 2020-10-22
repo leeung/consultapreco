@@ -1,59 +1,58 @@
+    
 
-    function getQuantidade(preco){
-        quantidade = 12;
-        preco  = preco.replace(',','.');
-        var nPreco = parseFloat(preco.substr(2,5));
-        console.log('Preco convertido: '+ nPreco);
-
-        if(nPreco > 5 &&  nPreco <= 9.99){
-            quantidade = 8;
-        }  else if(nPreco > 10 &&  nPreco <= 19.99){
-            quantidade = 6
-        }else if(nPreco > 20 &&  nPreco <= 79.99){
-            quantidade = 4
-        }else if(nPreco > 80 &&  nPreco <= 99.99){
-            quantidade = 3
-        }else if(nPreco > 100){
-            quantidade = 2
-        }
-        
-
-        return quantidade;
+    function zeraRegistros(){
+        $('#imgProduto').attr('src','');
+        $('#barra').html('');
+        $('#codigo').html('');
+        $('#descricao').html('');
+        $('#varejo').html('');
+        $('#atacado').html('');
+        $('#quantidade').html('');
     }
                 function consultaProduto(codBar){
                         console.log("Consultando produto " + codBar);
                         $.ajax({
-                        url: "http://192.168.0.200/SrvBuscaPreco/index.php",
+                        url: getConsulta+codBar+"/null/"+versao,
                         type: "get",
-                        data: {ean: codBar},
+                        //data: {ean: codBar},
                         dataType: "json"
 
                         }).done(function(resposta) {
-                            if(resposta.EAN){
-                                console.log("Retornou:"  + resposta.EAN + "||" + resposta.DESCRICAO);
-                                //$('#ean').html(resposta.DESCRICAO);
-                                $('#imgProduto').attr('src','http://192.168.0.200/SrvBuscaPreco/imagens/'+ resposta.CODIGO +'.jpg');
-                                $('#barra').html(resposta.EAN);
-                                $('#codigo').html(resposta.CODIGO);
-                                $('#descricao').html(resposta.DESCRICAO);
-                                $('#varejo').html(resposta.VAREJO);
-                                $('#atacado').html(resposta.ATACADO);
-                                $('#quantidade').html(getQuantidade(resposta.VAREJO));
+                            //console.log(resposta);
+                            //var obj = JSON.parse(resposta);
+                            console.log(JSON.stringify(resposta));
+                            
+                            zeraRegistros();
+                            console.log('Error: '+resposta.error);
+                            console.log('Message: '+resposta.message);
+                            if(resposta.error == false){
+                                console.log(resposta.result.EAN);
+                                
+                                $('#imgProduto').attr('src',urlFoto+resposta.result.IMG);
+                                $('#barra').html(resposta.result.EAN);
+                                $('#codigo').html(resposta.result.CODIGO);
+                                $('#descricao').html(resposta.result.DESCRICAO);
+                                $('#varejo').html(resposta.result.VAREJO);
+
+                                if(resposta.result.LOTE != ''){
+                                    $('#atacado').html(resposta.result.ATACADO);
+                                    if(Math.round(resposta.result.LOTE) != '999999')
+                                        $('#quantidade').html('Atacarejo partir de '+ Math.round(resposta.result.LOTE) +' unidades' );
+                                }
                                 $('.modal').modal('open');
                                 
-                            }else{
-                                console.log("Retornou Erro");
+                            }else if(resposta.error == true){
                                 codBar = "";
-                                $('#ean').val("PRODUTO NÃO CADASTRADO");
+                                $('#ean').val(resposta.message);
                             }
                             
-
                         }).fail(function(jqXHR, textStatus ) {
                             console.log("Falhou na requisição: " + textStatus);
                             $('#ean').val("ERRO DE CONEXAO");
 
                         }).always(function() {
                             console.log("Concluido");
+                            
                         });
 
                         codBar = "";
