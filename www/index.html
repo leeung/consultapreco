@@ -147,96 +147,22 @@
     <script type="text/javascript" src="js/funcoes.js"></script>
     <script type="text/javascript" src="js/telaConsulta.js"></script>
     <script type="text/javascript">
-        var uf = '';
-        var ean = "";
-        var timeOutModal = 5000;
-        var objTimeOutModal = null;
-
-        function setarUF(uf){
-          this.uf = uf;
-          $('#btnUFVal').html(uf);
-        }
-
-        function validaUF(){
-          if(this.uf == '') return false;
-          return true;         
-        }
-
-        function fecharModal(){
-          clearTimeout(objTimeOutModal);
-          objTimeOutModal = setTimeout(function(){ $('.modal').modal('close'); }, timeOutModal);
-        }
-   
-  
+        
         $(document).ready(function(){
-            //getip();
-            $('.slider').slider({
-                                  indicators: false,
-                                  height: 400
-
-                                });
-            $('#btnHome').floatingActionButton({
-              direction:'top',
-              hoverEnabled: false
-            });
             
-            $('select').formSelect();
-            $('.tooltipped').tooltip();
-            $('.modal').modal({ inDuration: 30, 
-                                outDuration: 30,
-                                startingTop: '30%',
-                                onOpenEnd: function(){
-                                  fecharModal();
-                                }
-                                });
+            
+           
 
           });
 
-          $("#icoLog").click(function(){
-            gravaLog = !gravaLog;
-            
-            if(gravaLog){
-              $("#telaLog").css("height","200px");
-              log("Iniciando gravação de log");
-              //alert("logativo");
-            }else{
-              $("#telaLog").css("height","0px");  
-              //alert("logainativo");
-              $('#telaLog').html("");
-            }
-
-          });
+          
 
 
-                function capturaTecla(event){
-                    $('.modal').modal('close');       
-                    var numeros = [1,2,3,4,5,6,7,8,9,0];
-                    log("Tecla digitada: " + event.keyCode);
-                    var tecla = event.keyCode - 48;
-                    if (numeros.indexOf(tecla) != -1){
-                        ean = ean + String(tecla);
-                        $('#ean').val(ean);
-                        if(ean.length == 13){
-						              log("Executando função de consulta para: " +ean);
-                          consultaProduto(ean);
-                          ean = "";
-                        }
-                    }/*else if(event.keyCode == 13){
-
-                        console.log("Executando função de consulta para: " +ean);
-                        consultaProduto(ean);
-                        ean = "";
-                    }*/
-                    
-                }
+                
       
-      var log =  function(msg){
-        console.log(msg);
-        if(gravaLog)
-          $('#telaLog').append('<p class="lime-text text-darken-1">'+msg+'</p>');
-      }
+      
 
-        document.addEventListener('keypress', capturaTecla, true);
+      
         
     </script>
 
