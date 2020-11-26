@@ -1,13 +1,11 @@
-console.log('-----Declarando constantes----');
-
-const versao 			= '20201028';
-const servidor 			= 'http://192.168.0.200/srvbuscapreco/';
+const versao 			    = '20201126';
+const servidor 			  = 'http://192.168.0.200/srvbuscapreco/';
 
 const getConsulta 		= servidor + "index.php/consulta/produto/";
 const getIpCliente 		= servidor + "index.php/consulta/getIpCliente/";
-const urlFoto			= servidor + "assets/imagens_produtos/";
-const urlBanner			= servidor + "assets/imagens_banner/";
-const instalador 		= 'http://192.168.0.200/srvbuscapreco/assets/instalador/'+versao+".apk";
+const urlFoto			    = servidor + "assets/imagens_produtos/";
+const urlBanner			  = servidor + "assets/imagens_banner/";
+const instalador 		  = 'http://192.168.0.200/srvbuscapreco/assets/instalador/'+versao+".apk";
 
 var gravaLog  = false;
 var ean = "";

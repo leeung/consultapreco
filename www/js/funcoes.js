@@ -8,14 +8,17 @@ function fecharModal(){
 
 //PEGA IP DO CLIENT
 var getIp = function() {
- 	var ip = '';
-  $.getJSON(getIpCliente,
-    function(json) {
-      ip = json.ip;
+  var ip = '';
+  var jqxhr = $.getJSON( getIpCliente, function() {
+  }).done(function(data) {
+      ip = data.ip
+    })
+    .fail(function() {
+      ip = ''
+    })
+    .always(function() {
       setInfoIp(ip);
-    }
-  );  
-  setInfoIp(ip);  
+    });
 }
 
 //SETA IP NA TELA
@@ -34,17 +37,20 @@ var setInfoIp = function(ip){
 //CAPTURA AS TECLAS
 function capturaTecla(event){
   $('.modal').modal('close');       
+
   var numeros = [1,2,3,4,5,6,7,8,9,0];
-  //log("Tecla digitada: " + event.keyCode);
   var tecla = event.keyCode - 48;
+
   if (numeros.indexOf(tecla) != -1){
     ean = ean + String(tecla);
     $('#ean').val(ean);
     if(ean.length == 13){
-      //log("Executando função de consulta para: " +ean);
       consultaProduto(ean);
       ean = "";
     }
+  }else if(event.keyCode == 13){
+    consultaProduto(ean);
+    ean = "";
   }                    
 }
 
