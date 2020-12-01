@@ -1,4 +1,4 @@
-const versao 			    = '20201126';
+const versao 			    = '20201201';
 const servidor 			  = 'http://192.168.0.200/srvbuscapreco/';
 
 const getConsulta 		= servidor + "index.php/consulta/produto/";

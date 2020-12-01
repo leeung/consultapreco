@@ -40,18 +40,24 @@ function capturaTecla(event){
 
   var numeros = [1,2,3,4,5,6,7,8,9,0];
   var tecla = event.keyCode - 48;
-
-  if (numeros.indexOf(tecla) != -1){
-    ean = ean + String(tecla);
-    $('#ean').val(ean);
-    if(ean.length == 13){
-      consultaProduto(ean);
-      ean = "";
+  
+  if (numeros.indexOf(tecla) != -1 || ean.length == 13){
+    
+    if(ean.length != 13){
+      ean = ean + String(tecla);
+      $('#ean').val(ean);
     }
-  }else if(event.keyCode == 13){
-    consultaProduto(ean);
-    ean = "";
-  }                    
+
+    if(event.keyCode == 13){
+      log('Solicitando consulta, enter: '+ean);
+      consultaProduto(ean);
+      ean = '';
+    }else if(ean.length == 13){
+      log('Solicitando consulta, 13digitos: '+ean);
+      consultaProduto(ean);
+      ean = '';
+    }
+  }   
 }
 
 //EXIB LOGS
@@ -68,6 +74,7 @@ function log(msg){
     type: "get",
     dataType: "json"
     }).done(function(resposta) {
+      log('4');
         console.log(JSON.stringify(resposta));
         log('return : '+ JSON.stringify(resposta));
 
@@ -95,10 +102,12 @@ function log(msg){
         }
         
     }).fail(function(jqXHR, textStatus ) {
+      log('5');
         log("Falhou na requisição: " + textStatus);
         $('#ean').val("ERRO DE CONEXAO");
     }).always(function() {
         log("Concluido");
+        log('6');
     });
     //$('#ean').val(codBar);
 }
