@@ -41,18 +41,18 @@ function capturaTecla(event){
   var numeros = [1,2,3,4,5,6,7,8,9,0];
   var tecla = event.keyCode - 48;
   
-  if (numeros.indexOf(tecla) != -1 || ean.length == 13){
-    
-    if(ean.length != 13){
+  if (numeros.indexOf(tecla) != -1 || event.keyCode == 13){
+
+    if(event.keyCode != 13){ //se não for um enter
       ean = ean + String(tecla);
       $('#ean').val(ean);
     }
 
-    if(event.keyCode == 13){
+    if(event.keyCode == 13){ //se for enter, faz consulta
       log('Solicitando consulta, enter: '+ean);
       consultaProduto(ean);
       ean = '';
-    }else if(ean.length == 13){
+    }else if(ean.length == 13){ //se tiver 13 digitos, faz consulta
       log('Solicitando consulta, 13digitos: '+ean);
       consultaProduto(ean);
       ean = '';
@@ -93,7 +93,16 @@ function log(msg){
             $('#codigo').html(resposta.result.CODIGO);
             $('#descricao').html(resposta.result.DESCRICAO);
             $('#varejo').html(resposta.result.VAREJO);
-            $('#atacado').html(resposta.result.ATACADO);
+
+
+            if (resposta.result.ATACADO != '') {
+              $('#atacado').html(resposta.result.ATACADO);
+              $("#desc_atacado").show();
+            }else{
+              $("#desc_atacado").hide();
+              $('#atacado').html('');
+            }
+            
             $('#quantidade').html(resposta.result.MENSAGEM);
             $('.modal').modal('open');
             
